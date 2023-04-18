@@ -26,3 +26,5 @@ Route::Post('/updateUserPassword',[App\Http\Controllers\UserController::class, '
 Route::Post('/deleteUser',[App\Http\Controllers\UserController::class, 'deleteUser'])->name('deleteUser');
 // Auth Routes
 Route::Post('/registerWithEmail',[App\Http\Controllers\Auth\RegisterController::class, 'registerWithEmail'])->name('registerWithEmail');
+Route::Post('/loginUser',[App\Http\Controllers\Auth\LoginController::class, 'loginUser'])->name('loginUser');
+Route::Post('/logoutUser',[App\Http\Controllers\Auth\LoginController::class, 'logoutUser'])->name('logoutUser');

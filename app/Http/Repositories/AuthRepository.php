@@ -3,6 +3,7 @@ namespace App\Http\Repositories;
 use App\Http\Repositories\RepositoryInterfaces\AuthRepositoryInterface;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Auth;
 class AuthRepository implements AuthRepositoryInterface
 {
     public function registerWithEmail($data)
@@ -30,16 +31,15 @@ class AuthRepository implements AuthRepositoryInterface
     }
     public function attemptLogin($data)
     {
-        $user = User::where('email', $data['email'])->first();
-        if ($user) {
+        $data->validate([
+            'email'=>'required|email|exists:users,email',
+            'password'=>'required',
+            ]);
+            $check=$data->only('email','password');
+           
+            $user=Auth::guard('web')->attempt($check);
             return $user;
-        }
-        $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
-        return $user;
+            
     }
     public function findById($data)
     {
@@ -62,12 +62,10 @@ class AuthRepository implements AuthRepositoryInterface
             $user->delete();
         }
     }
-    public function Logout($data)
+    public function attemptLogout($data)
     {
-        $user = User::where('email', $data['email'])->first();
-        if ($user) {
-            $user->delete();
-        }
+        $user=Auth::guard('web')->logout();
+        return $user;
     }
     
     
