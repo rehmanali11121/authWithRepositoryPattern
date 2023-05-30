@@ -1,6 +1,6 @@
 <?php
-namespace App\Http\Repositories\User;
-use App\Http\Repositories\User\RepositoryInterfaces\UserRepositoryInterface;
+namespace App\Http\Repositories;
+use App\Http\Repositories\RepositoryInterfaces\UserRepositoryInterface;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 class UserRepository implements UserRepositoryInterface

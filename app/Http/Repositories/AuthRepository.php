@@ -1,6 +1,6 @@
 <?php
-namespace App\Http\Repositories\SuperAdmin;
-use App\Http\Repositories\SuperAdmin\RepositoryInterfaces\AuthRepositoryInterface;
+namespace App\Http\Repositories;
+use App\Http\Repositories\RepositoryInterfaces\AuthRepositoryInterface;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Auth;

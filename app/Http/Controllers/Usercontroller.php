@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Repositories\Admin\UserRepository;
-class AdminController extends Controller
+use App\Http\Repositories\UserRepository;
+class Usercontroller extends Controller
 {
     private $repository;
     public function __construct(UserRepository $repository)
