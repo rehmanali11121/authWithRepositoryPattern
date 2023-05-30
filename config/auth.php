@@ -14,10 +14,17 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+        'guard'=>'web',
+        'passwords'=>'users',
     ],
-
+    'admin' => [
+        'guard' => 'admin',
+        'passwords'=> 'admins',
+    ],
+    'super_admin' => [
+        'guard' => 'super_admin',
+        'passwords'=> 'super_admins',
+    ],
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
@@ -39,6 +46,14 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+        ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+        'super_admin' => [
+            'driver' => 'session',
+            'provider' => 'super_admins',
         ],
     ],
 
@@ -63,6 +78,14 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
+        'super_admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Super_admin::class,
         ],
 
         // 'users' => [
@@ -93,6 +116,18 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'admins' => [
+            'provider' => 'admins',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'super_admins' => [
+            'provider' => 'super_admins',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,
